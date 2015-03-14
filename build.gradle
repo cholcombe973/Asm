@@ -1,0 +1,18 @@
+apply plugin: 'java' // Plugin as major conventions
+//apply plugin: 'errorprone'
+apply plugin: 'info'
+sourceCompatibility = 1.7
+// GRADLE-2087 workaround, perform after java plugin
+status = project.hasProperty('preferredStatus')?project.preferredStatus:(version.contains('SNAPSHOT')?'snapshot':'release')
+
+repositories { 
+jcenter() 
+//mavenCentral() 
+maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+ }
+dependencies { 
+compile 'com.google.code.findbugs:jsr305:2.0.2'
+ compile 'com.google.guava:guava:18.0' 
+compile 'net.sf.jopt-simple:jopt-simple:4.7'
+testCompile 'junit:junit:4.11'
+}
